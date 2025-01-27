@@ -161,5 +161,5 @@ JFK Airport
 `Answer`
 
 ```
-terraform init, terraform plan -auto-apply, terraform destroy
+terraform init, terraform apply -auto-approve, terraform destroy
 ```
