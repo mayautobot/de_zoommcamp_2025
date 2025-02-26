@@ -1,3 +1,8 @@
+<!-- command to create network on which we can create containers that can communicate with each other. -->
+docker network create db-network
+
+
+<!-- command to deploy postgres docker container  -->
 docker run -it `
 --name taxi_db `
 --network db-network `
@@ -9,6 +14,7 @@ docker run -it `
 postgres:16
 
 
+<!-- command to deploy PGADMIN  -->
 docker run -it `
 -e PGADMIN_DEFAULT_EMAIL="admin@admin.com" `
 -e PGADMIN_DEFAULT_PASSWORD="root" `
@@ -16,5 +22,3 @@ docker run -it `
 --network db-network `
 --name taxi_pg `
 dpage/pgadmin4
-
-docker network create db-network

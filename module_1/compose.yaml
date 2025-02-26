@@ -1,0 +1,27 @@
+name: test-app
+services:
+  postgress_taxi_db:
+    image: postgres:16
+    environment:
+      - POSTGRES_DB=testdb
+      - POSTGRES_USER=test
+      - POSTGRES_PASSWORD=test
+    ports:
+      - 5432:5432
+    volumes:
+      - ./db_data:/var/lib/postgresql/data:rw
+  pgadmin_taxi:
+    image: dpage/pgadmin4
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@admin.com
+      - PGADMIN_DEFAULT_PASSWORD=root
+    ports:
+      - 8080:80
+  load_data:
+    image: python_load_data
+    build:
+      context: ./load_data
+      # network: test_network
+    depends_on:
+      - postgress_taxi_db
+      - pgadmin_taxi
